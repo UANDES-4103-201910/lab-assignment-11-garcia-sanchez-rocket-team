@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
 
@@ -44,8 +45,6 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        @event.image.attach(params(:image))
-
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
