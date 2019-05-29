@@ -14,11 +14,39 @@
         <%= link_to('Home', :root) %>
         <%= render 'devise/menu/registration_items' %>
         <%= render 'devise/menu/login_items' %>
-        <%= render 'shopping_carts/shopping_cart' %>
+        
       </ul>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
     </header>
     <%= yield %>
+  <nav class="nav navbar-expand-md navbar-dark bg-dark fixed-top">
+    <button class="navbar-toggler"  data-toggle = "collapse" data-target = "#collapse-target">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="collapse_target">
+      <%= link_to root_path do%>
+        <button class="btn btn-dark" style="font-size: 20px;"> TicketTopia </button> 
+      <% end -%>
+    </div>
+
+    <ul class="navbar-nav mr-auto"></ul>
+    <ul class="navbar-nav">
+      
+        <%= link_to "http://localhost:3000/shopping_cart" do %>
+          <button class="btn btn-dark"> Cart (<%=shopping_cart_how_many_tickets()%>)</button>
+        <% end -%>
+      
+  
+      <%= link_to "http://localhost:3000/users/sign_in" do%>
+        <button class="btn btn-dark">Log In</button>
+      <% end -%>
+      
+      
+
+      
+    </ul>
+  </nav>
   </body>
 </html>
