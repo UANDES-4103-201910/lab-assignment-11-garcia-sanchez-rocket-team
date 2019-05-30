@@ -1,12 +1,57 @@
-<p>The contents of your shopping cart are as follows:</p>
 
-<ul>
+
+
+<div class="row">
+<div class="col">
+<h3>Shopping cart:</h3>
+<table class="table table-condensed">
+	<thead>
+      <tr>
+        <th>Event</th>
+        <th>Start Date</th>
+        <th>Ticket Zone</th>
+        <th>Price</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+  <tbody>
+
 <%shopping_cart_get_tickets().each do |k,v| %>
-  <li><%=TicketType.find(k).event.name%>, <%=TicketType.find(k).event.start_date.in_time_zone()%>, <%=TicketType.find(k).ticket_zone.zone%>, <%=TicketType.find(k).price%>, <%=v%></li>
+<tr>
+  <td><%=TicketType.find(k).event.name%></td>
+  <td><%=TicketType.find(k).event.start_date.in_time_zone()%></td> 
+  <td><%=TicketType.find(k).ticket_zone.zone%></td> 
+  <td><%=TicketType.find(k).price%></td>  
+  <td><%=v%></td>
+</tr>
 <%end%>
-</ul>
 
+
+  </tbody>
+</table>
+</div>
+
+<div class="col">
+<h3>Previous shopping:</h3>
+<table class="table table-condensed">
+<thead>
+  <tr>
+    <th>Event</th>
+    <th>Start Date</th>
+    <th>Date of shopping</th>
+    <th>Price</th>
+    <th>Amount</th>
+  </tr>
+</thead>
+
+<tbody>
+</tbody>
+</table>
+</div>
+
+</div>
+<div class="row">
 <%= link_to 'Back', :back %>
-
+</div>
 <!-- TODO: remove items from cart -->
 <!-- TODO: button for placing order -->

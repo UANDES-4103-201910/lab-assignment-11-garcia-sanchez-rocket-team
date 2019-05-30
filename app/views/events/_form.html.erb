@@ -10,26 +10,34 @@
       </ul>
     </div>
   <% end %>
-  <div class="row">
-  <% if event.image.attached?%>
-    <%= image_tag(event.image, size:"120x80")%>
-    <%else%>
-    <%= image_tag ("logo.jpg"), size: "120x80" %>
-  <% end %>
-  </div>
-  
-  <%= form.label :name %>
-  <%= form.text_field :name %>
-  <%= form.label :description %>
-  <%= form.text_area :description, cols: 60, rows: 10 %>
-  <%= form.label :start_date %>
-  <%= date_select :event, :start_date %>
-  <%= form.label :event_venue_id %>
-  <%= form.select(:event_venue_id, options_from_collection_for_select(EventVenue.all, :id, :name))%>
-  <%= form.file_field :image%>
-  
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<div class="row">
+
+<% if event.image.attached?%>
+  <%= image_tag(event.image, size:"222x300")%>
+<%else%>
+  <%= image_tag ("logo.jpg"), size: "222x300" %>
 <% end %>
+</div>
+
+<div class="row">
+  <div class="col-md-6" >
+<p><%= form.text_field :name , placeholder: "Event Name"%></p>
+
+
+<p><%= form.text_area :description, cols: 60, rows: 3 , placeholder: "Description"%></p>
+
+
+<p><%= date_select :event, :start_date , placeholder: "Date of start"%></p>
+
+<p><%= form.select(:event_venue_id, options_from_collection_for_select(EventVenue.all, :id, :name))%>Event Location</p>
+<p><%= form.file_field :image%></p>
+
+  </div>
+</div>
+
+<div class="actions" style="float: right">
+  <%= form.submit %>
+</div>
+<% end %>
+
