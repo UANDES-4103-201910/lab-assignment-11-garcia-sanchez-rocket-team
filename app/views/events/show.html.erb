@@ -1,14 +1,24 @@
 
+<div class="row">
+  <div class="col-auto">
+<% if @event.image.attached?%>
+ <%= image_tag(@event.image, size:"120x80")%>
+  <%else%>
+  <%= image_tag ("logo.jpg"), size: "120x80" %>
+<% end %>
+</div>
+</div>
+<div class="row">
+<div class="col-auto">
 <h2><%=@event.name%></h2>
 <p><%=@event.description%></p>
 <p><%=@event.start_date%></p>
 
-  <%= image_tag @event.image.variant(resize_to_limit: [100,100])%>
-<h3>About the event evenue</h3>
+<h5>About the event evenue
 <% if can? :edit, Event %>
-  <%=link_to 'Edit', edit_event_path(@event) %> |
+  <%=link_to 'Edit', edit_event_path(@event) %> 
 <% end %>
-
+</h5>
 <% if can? :create, Order %>
 <h3>Buy a ticket!</h3>
 
@@ -24,6 +34,7 @@
                         ttype
                      }, :id, :zone_details)
      ) %>
+    
     <%=form.select(:amount, options_for_select((1..10).map { |val| [val, val]} )) %>
   <div class="actions">
     <%= form.submit 'Add to cart' %>
@@ -34,6 +45,8 @@
   <li>Venue: <%=@event.event_venue.name%></li>
   <li>Capacity: <%=@event.event_venue.capacity%></li>
 </ul>
+</div>
+</div>
 
 
-<%= link_to 'Back', :back %>
+<%= link_to 'Back', :back  %>

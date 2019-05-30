@@ -14,7 +14,7 @@ users = [User.new(name:'Administrator', lastname:'User', \
               address:'San Carlos de Apoquindo'),
          User.new(name:'Registered', lastname:'User 2', \
               password:'123456', email:'reguser2@miuandes.cl', \
-              address:'San Carlos de Apoquindo')]
+              address:'San Carlos de Apoquindo' )]
 
 for u in users do
   u.save!

@@ -7,20 +7,27 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style >
+     ul{
+      float: right;
+      list-style: none;
+      text-align: right;
+     }
+     .extra {
+      float: right;
+     }
+     .container{
+      max-width: 95%
+     }
+
+    </style>
   </head>
   <body>
+
     <header>
-      <ul class="hmenu">
-        <%= link_to('Home', :root) %>
-        <%= render 'devise/menu/registration_items' %>
-        <%= render 'devise/menu/login_items' %>
-        
-      </ul>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-    </header>
-    <%= yield %>
-  <nav class="nav navbar-expand-md navbar-dark bg-dark fixed-top">
+
+  <nav class="nav navbar-expand-md navbar-dark bg-dark ">
+    <%= image_tag ("logo.jpg"), size: "65x45" %>
     <button class="navbar-toggler"  data-toggle = "collapse" data-target = "#collapse-target">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -38,15 +45,39 @@
           <button class="btn btn-dark"> Cart (<%=shopping_cart_how_many_tickets()%>)</button>
         <% end -%>
       
-  
-      <%= link_to "http://localhost:3000/users/sign_in" do%>
+      <% if user_signed_in? %>
+      <%= link_to edit_user_registration_path do%>
+        <button class="btn btn-dark">Settings</button>
+        <% end %>
+      <%= link_to "http://localhost:3000/users/sign_out" do%>
+        <button class="btn btn-dark">Log Out</button>
+      <% end %>
+
+        <%else%>
+        <%= link_to "http://localhost:3000/users/sign_in" do%>
         <button class="btn btn-dark">Log In</button>
-      <% end -%>
-      
+        <% end %>
+
+      <% end %>
       
 
       
     </ul>
   </nav>
-  </body>
+    </header>
+  
+  <div class="container">
+    <div class="row">
+    <div class="col"></div>
+    <div class="col-md-auto" style="background: ">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+    </div>
+    <div class="col"></div>
+      
+    </div>
+  </div>
+</body>
 </html>
+

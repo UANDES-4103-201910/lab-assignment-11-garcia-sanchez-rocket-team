@@ -1,31 +1,40 @@
+<head>
+  <style >
+    
+  </style>
+</head>
+
 <h1>Welcome to TicketTopia</h1>
 
 <p>Tickets for the following events are currently available:</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Descripción</th>
-      <th>Lugar</th>
-      <th>Fecha</th>
-    </tr>
-  </thead>
-
-  <tbody>
-  <% @events.each do |event| %>
-    <tr>
-      <td><%= link_to event.name, event %></td>
-      <td><%=event.description%></td>
-      <td><%=event.event_venue.name%></td>
-      <td><%=event.start_date.in_time_zone()%></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-
-<br>
-
 <% if can? :create, Event %>
 <%= link_to 'New Event', new_event_path %>
 <% end %>
+<hr>
+
+<div class="card-columns">
+<% @events.each do |event| %>
+
+<div class="thumbnail thumb-box"  >
+<div class="card-body" style="text-align: center; height: 500px; ">
+<div class="card " style="width: 15rem,; background-color: #fee43b;">
+
+  <% if event.image.attached?%>
+    <%= image_tag(event.image, size:"222x300")%>
+  <%else%>
+    <%= image_tag ("logo.jpg"), size: "222x300" %>
+  <% end %>
+
+    <h5 class="card-title"><%= link_to event.name, event %></h5>
+    <p class="card-text"><%= event.description %></p>
+    <p class="card-text"><%=event.event_venue.name%></p>
+    <p class="card-text"><%=event.start_date.in_time_zone()%></p>
+</div>
+
+
+</div>
+</div>
+
+<% end %>
+</div>
