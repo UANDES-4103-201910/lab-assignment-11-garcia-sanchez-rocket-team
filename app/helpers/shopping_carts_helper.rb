@@ -12,5 +12,11 @@ module ShoppingCartsHelper
     end
     Hash[*session[:shopping_cart].group_by{ |v| v.to_i }.flat_map{ |k, v| [k, v.size] }]
   end
+  def previous_shop
+     if session[:shopping_cart].nil?
+      return {}
+    end
+    
+  end 
 
 end

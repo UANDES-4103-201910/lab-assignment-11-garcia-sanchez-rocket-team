@@ -13,28 +13,31 @@
 <% end %>
 <hr>
 
-<div class="card-columns">
+<div class="card-columns  ">
 <% @events.each do |event| %>
 
-<div class="thumbnail thumb-box"  >
-<div class="card-body" style="text-align: center; height: 500px; ">
-<div class="card " style="width: 15rem,; background-color: #fee43b;">
+<div class="card-body mb-3" style="text-align: center; height: 500px; line-height: 0.4;">
+<div class="card " style="width: 15rem; height: 500px; background-color: #fee43b;">
 
   <% if event.image.attached?%>
-    <%= image_tag(event.image, size:"222x300")%>
+    <%= link_to event do %>
+      <%= image_tag(event.image, size:"222x280")%>
+    <% end -%>
   <%else%>
-    <%= image_tag ("logo.jpg"), size: "222x300" %>
+  <%= link_to event do %>
+    <%= image_tag ("logo.jpg"), size: "222x280" %>
+  <% end %>
   <% end %>
 
     <h5 class="card-title"><%= link_to event.name, event %></h5>
-    <p class="card-text"><%= event.description %></p>
+    <p class="card-text" style="line-height: 1.2" ><%= event.description %></p>
     <p class="card-text"><%=event.event_venue.name%></p>
     <p class="card-text"><%=event.start_date.in_time_zone()%></p>
 </div>
 
 
 </div>
-</div>
-
 <% end %>
+
+
 </div>

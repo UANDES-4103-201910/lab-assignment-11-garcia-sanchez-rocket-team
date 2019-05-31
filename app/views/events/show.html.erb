@@ -1,10 +1,12 @@
 
+
+
 <div class="row">
   <div class="col-auto">
 <% if @event.image.attached?%>
-  <%= image_tag(@event.image, size:"222x300")%>
+  <%= image_tag(@event.image, size:"222x300", align: "middle")%>
 <%else%>
-  <%= image_tag ("logo.jpg"), size: "222x300" %>
+  <%= image_tag ("logo.jpg"), size: "222x300", align: "middle" %>
 <% end %>
 </div>
 </div>
@@ -14,9 +16,10 @@
 <p><%=@event.description%></p>
 <p><%=@event.start_date%></p>
 
-<h5>About the event evenue
+<h5>About the event evenue:
 <% if can? :edit, Event %>
   <%=link_to 'Edit', edit_event_path(@event) %> 
+  <%= link_to 'Delete', @event, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
 </h5>
 <% if can? :create, Order %>
